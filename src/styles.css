@@ -35,12 +35,6 @@
   user-select: none;
 }
 
-.number:hover {
-  /* -webkit-box-shadow: inset 0 0 30px rgb(255, 255, 255);
-  -moz-box-shadow: inset 0 0 30px rgb(255, 255, 255);
-  box-shadow: inset 0 0 30px rgb(255, 255, 255); */
-}
-
 .number:nth-child(1) {
   grid-area: 3 / 1 / 4 / 2;
 }
@@ -155,15 +149,16 @@
   height: 120px;
 }
 .number-even {
-  background: red;
+  background: black;
 }
 .number-odd {
-  background: black;
+  background: red;
 }
 
 .number-selected {
-  /*  */
+  /* background: orange; */
 }
+.number:hover:after,
 .number-selected-hover:after {
   content: "";
   display: block;
@@ -239,4 +234,13 @@
 }
 .remove-coins-btn:after {
   content: "X";
+}
+.btn svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }

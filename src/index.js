@@ -72,13 +72,20 @@ const selectMultipleNumbers = (e) => {
     }
     handleCoins(e.target, 19, 37);
   }
-  if (eventId === "evenBtn") {
-    for (let i = 1; i < 37; i++) {
-      if (i % 2 === 0) {
-        numbers[i].classList.add("number-selected");
-      }
-    }
-    // handleCoins(e.target, 1, 2);
+  if (eventId === "evenBtn" || eventId === "blackBtn") {
+    const evens = document.querySelectorAll(".number-even");
+    evens.forEach((even) => {
+      even.classList.add("number-selected");
+    });
+    handleCoins(e.target, 1, 37);
+  }
+
+  if (eventId === "oddBtn" || eventId === "redBtn") {
+    const evens = document.querySelectorAll(".number-odd");
+    evens.forEach((even) => {
+      even.classList.add("number-selected");
+    });
+    handleCoins(e.target, 1, 37);
   }
 };
 // numbers[winningNumber].classList.contains("number-selected") ||
@@ -103,6 +110,7 @@ const startGame = () => {
   }, 3000);
 };
 
+// Optimise later
 const hoverIn = (e) => {
   let eventTarget = e.target.id;
   if (eventTarget === "firstTwelveBtn") {
@@ -110,13 +118,91 @@ const hoverIn = (e) => {
       numbers[i].classList.add("number-selected-hover");
     }
   }
+
+  if (eventTarget === "secondTwelveBtn") {
+    for (let i = 13; i < 25; i++) {
+      numbers[i].classList.add("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "thirdTwelveBtn") {
+    for (let i = 25; i < 37; i++) {
+      numbers[i].classList.add("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "firstHalfBtn") {
+    for (let i = 1; i < 19; i++) {
+      numbers[i].classList.add("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "secondHalfBtn") {
+    for (let i = 19; i < 37; i++) {
+      numbers[i].classList.add("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "evenBtn" || eventTarget === "blackBtn") {
+    const evens = document.querySelectorAll(".number-even");
+    evens.forEach((even) => {
+      even.classList.add("number-selected-hover");
+    });
+  }
+
+  if (eventTarget === "oddBtn" || eventTarget === "redBtn") {
+    const odds = document.querySelectorAll(".number-odd");
+    odds.forEach((odd) => {
+      odd.classList.add("number-selected-hover");
+    });
+  }
 };
+// Optimise later
 const hoverOut = (e) => {
   let eventTarget = e.target.id;
+
   if (eventTarget === "firstTwelveBtn") {
     for (let i = 1; i < 13; i++) {
       numbers[i].classList.remove("number-selected-hover");
     }
+  }
+
+  if (eventTarget === "secondTwelveBtn") {
+    for (let i = 13; i < 25; i++) {
+      numbers[i].classList.remove("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "thirdTwelveBtn") {
+    for (let i = 25; i < 37; i++) {
+      numbers[i].classList.remove("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "firstHalfBtn") {
+    for (let i = 1; i < 19; i++) {
+      numbers[i].classList.remove("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "secondHalfBtn") {
+    for (let i = 19; i < 37; i++) {
+      numbers[i].classList.remove("number-selected-hover");
+    }
+  }
+
+  if (eventTarget === "evenBtn" || eventTarget === "blackBtn") {
+    const evens = document.querySelectorAll(".number-even");
+    evens.forEach((even) => {
+      even.classList.remove("number-selected-hover");
+    });
+  }
+
+  if (eventTarget === "oddBtn" || eventTarget === "redBtn") {
+    const odds = document.querySelectorAll(".number-odd");
+    odds.forEach((odd) => {
+      odd.classList.remove("number-selected-hover");
+    });
   }
 };
 
