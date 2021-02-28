@@ -18,9 +18,8 @@ const selectSingleNumber = (e) => {
 const selectMultipleNumbers = (e) => {
   // Class number-selected is only to find the winning number
   let eventId = e.target.getAttribute("id"); // The ID of the clicked button
-  let eventTarget = e.target.id; // The target HTML element to add COINS
 
-  // Fix later
+  // Fix later + adds multiple remove X buttons, make it add ony one
   const handleCoins = (target, start, end) => {
     // create elements
     const coin = document.createElement("div");
@@ -30,7 +29,7 @@ const selectMultipleNumbers = (e) => {
     // Add elements to target
     target.appendChild(coin);
     target.appendChild(removeCoinsBtn);
-    let coins = document.querySelectorAll(".coin");
+    let coins = document.querySelectorAll(`#${eventId} .coin`);
     coin.textContent = coins.length;
 
     removeCoinsBtn.addEventListener("click", () => {
