@@ -3,12 +3,6 @@ const buttons = document.querySelectorAll(".btn");
 let displayWinningNumber = document.getElementById("winningNumber");
 let winningNumbers = [];
 
-const coin = document.createElement("div");
-coin.classList.add("coin");
-coin.textContent = "$";
-const removeCoinsBtn = document.createElement("div");
-removeCoinsBtn.classList.add("remove-coins-btn");
-removeCoinsBtn.textContent = "X";
 const selectSingleNumber = (e) => {
   // click functions to add selected class
   // get the target number + the target element
@@ -22,52 +16,74 @@ const selectSingleNumber = (e) => {
   }
 };
 const selectMultipleNumbers = (e) => {
+  // Class number-selected is only to find the winning number
   let eventId = e.target.getAttribute("id"); // The ID of the clicked button
-  let eventTarget = e.target; // The target HTML element to add COINS
-  if (eventId === "firstTwelveBtn") {
-    for (let i = 1; i < 13; i++) {
-      if (!numbers[i].classList.contains("number-selected")) {
-        numbers[i].classList.add("number-selected");
-      }
-    }
-    eventTarget.appendChild(coin.cloneNode(true));
-    eventTarget.appendChild(removeCoinsBtn);
+  let eventTarget = e.target.id; // The target HTML element to add COINS
+
+  // Fix later
+  const handleCoins = (target, start, end) => {
+    // create elements
+    const coin = document.createElement("div");
+    coin.classList.add("coin");
+    const removeCoinsBtn = document.createElement("div");
+    removeCoinsBtn.classList.add("remove-coins-btn");
+    // Add elements to target
+    target.appendChild(coin);
+    target.appendChild(removeCoinsBtn);
     let coins = document.querySelectorAll(".coin");
+    coin.textContent = coins.length;
 
-    coins.forEach((coin) => {
-      coin.style.left += coins.length + "1px";
-    });
     removeCoinsBtn.addEventListener("click", () => {
-      for (let i = 0; i < coins.length; i++) {
-        coins[i].remove();
+      target.removeChild(coin);
 
-        for (let i = 0; i < 13; i++) {
-          numbers[i].classList.remove("number-selected");
-        }
-      }
-      if (eventTarget.contains(removeCoinsBtn)) {
+      for (let j = start; j < end; j++) {
+        numbers[j].classList.remove("number-selected");
         removeCoinsBtn.remove();
       }
     });
+  };
+
+  if (eventId === "firstTwelveBtn") {
+    for (let i = 1; i < 13; i++) {
+      numbers[i].classList.add("number-selected");
+    }
+    handleCoins(e.target, 1, 13);
+  }
+  if (eventId === "secondTwelveBtn") {
+    for (let i = 13; i < 25; i++) {
+      numbers[i].classList.add("number-selected");
+    }
+    handleCoins(e.target, 13, 25);
+  }
+  if (eventId === "thirdTwelveBtn") {
+    for (let i = 25; i < 36; i++) {
+      numbers[i].classList.add("number-selected");
+    }
+    handleCoins(e.target, 25, 36);
+  }
+  if (eventId === "firstHalfBtn") {
+    for (let i = 1; i < 19; i++) {
+      numbers[i].classList.add("number-selected");
+    }
+    handleCoins(e.target, 1, 19);
+  }
+  if (eventId === "secondHalfBtn") {
+    for (let i = 19; i < 37; i++) {
+      numbers[i].classList.add("number-selected");
+    }
+    handleCoins(e.target, 19, 37);
+  }
+  if (eventId === "evenBtn") {
+    for (let i = 1; i < 37; i++) {
+      if (i % 2 === 0) {
+        numbers[i].classList.add("number-selected");
+      }
+    }
+    // handleCoins(e.target, 1, 2);
   }
 };
-
-const buttonsHover = () => {
-  numbers.forEach((number) => {
-    if (!number.classList.contains("number-selected")) {
-      number.classList.add("number-selected");
-    } else return null;
-  });
-};
-
-const buttonsHoverEnd = () => {
-  numbers.forEach((number) => {
-    if (number.classList.contains("number-selected")) {
-      number.classList.remove("number-selected");
-    } else return null;
-  });
-};
-
+// numbers[winningNumber].classList.contains("number-selected") ||
+// numbers[winningNumber].classList.contains("number-single-selected")
 const startGame = () => {
   setInterval(() => {
     let winningNumber = Math.floor(Math.random() * 37);
@@ -88,12 +104,29 @@ const startGame = () => {
   }, 3000);
 };
 
+const hoverIn = (e) => {
+  let eventTarget = e.target.id;
+  if (eventTarget === "firstTwelveBtn") {
+    for (let i = 1; i < 13; i++) {
+      numbers[i].classList.add("number-selected-hover");
+    }
+  }
+};
+const hoverOut = (e) => {
+  let eventTarget = e.target.id;
+  if (eventTarget === "firstTwelveBtn") {
+    for (let i = 1; i < 13; i++) {
+      numbers[i].classList.remove("number-selected-hover");
+    }
+  }
+};
+
 document.getElementById("startGameBtn").addEventListener("click", startGame);
 numbers.forEach((number) => {
   number.addEventListener("click", selectSingleNumber);
 });
 buttons.forEach((button) => {
   button.addEventListener("click", selectMultipleNumbers);
-  button.addEventListener("mouseover", buttonsHover);
-  button.addEventListener("mouseleave", buttonsHoverEnd);
+  button.addEventListener("mouseenter", hoverIn);
+  button.addEventListener("mouseleave", hoverOut);
 });

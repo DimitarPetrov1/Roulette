@@ -161,7 +161,10 @@
   background: black;
 }
 
-.number-selected:after {
+.number-selected {
+  /*  */
+}
+.number-selected-hover:after {
   content: "";
   display: block;
   position: absolute;
@@ -169,8 +172,8 @@
   right: 0;
   bottom: 0;
   left: 0;
-  -webkit-box-shadow: inset 0px 0px 0px 2px rgba(134, 134, 134, 0.8);
-  box-shadow: inset 0px 0px 0px 2px rgba(167, 167, 167, 0.8);
+  -webkit-box-shadow: inset 0px 0px 0px 2px rgba(255, 196, 0, 0.8);
+  box-shadow: inset 0px 0px 0px 2px rgba(255, 230, 2, 0.8);
 }
 
 .number-single-selected:after {
@@ -213,8 +216,8 @@
 }
 .coin {
   position: absolute;
-  height: 12px;
-  width: 12px;
+  height: 20px;
+  width: 20px;
   background: red;
   border-radius: 50%;
   font-size: 10px;
@@ -225,12 +228,15 @@
 .remove-coins-btn {
   position: absolute;
   bottom: 0;
-  height: 12px;
-  width: 12px;
+  height: 16px;
+  width: 16px;
   background: blue;
   border-radius: 50%;
   font-size: 10px;
   text-align: center;
   user-select: none;
   cursor: pointer;
+}
+.remove-coins-btn:after {
+  content: "X";
 }
