@@ -1,7 +1,6 @@
 const numbers = document.querySelectorAll(".number");
 const buttons = document.querySelectorAll(".btn");
 let displayWinningNumber = document.getElementById("winningNumber");
-let winningNumbers = [];
 
 const selectSingleNumber = (e) => {
   // click functions to add selected class
@@ -90,6 +89,21 @@ const selectMultipleNumbers = (e) => {
 };
 // numbers[winningNumber].classList.contains("number-selected") ||
 // numbers[winningNumber].classList.contains("number-single-selected")
+
+const numberBg = (number) => {
+  const div = document.createElement("div");
+  div.classList.add("winning-number-div");
+  if (number % 2 === 0) {
+    displayWinningNumber.appendChild(div);
+    div.textContent = number;
+    div.style.background = "red";
+  } else {
+    displayWinningNumber.appendChild(div);
+    div.textContent = number;
+    div.style.background = "black";
+  }
+};
+
 const startGame = () => {
   setInterval(() => {
     let winningNumber = Math.floor(Math.random() * 37);
@@ -105,9 +119,8 @@ const startGame = () => {
       }
     }
     // ... else don't do anything
-    winningNumbers.unshift(winningNumber);
-    displayWinningNumber.textContent = "Winning number is: " + winningNumbers;
-  }, 3000);
+    numberBg(winningNumber);
+  }, 1000);
 };
 
 // Optimise later
