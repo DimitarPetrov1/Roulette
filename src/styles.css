@@ -4,8 +4,125 @@
   box-sizing: border-box;
 }
 
+.wrap-all {
+  display: flex;
+  flex-direction: column;
+}
+.wrap-table {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrap-whell {
+  height: 400px;
+  width: 400px;
+}
+
+.wheel {
+  height: 400px;
+  width: 400px;
+  position: relative;
+  border-radius: 50%;
+
+  /* animation: rotateWheel 8s linear infinite; */
+  background: conic-gradient(
+    red 0 2.7%,
+    black 2.7% calc(2.7% * 2),
+    red calc(2.7% * 2) calc(2.7% * 3),
+    black calc(2.7% * 3) calc(2.7% * 4),
+    red calc(2.7% * 4) calc(2.7% * 5),
+    black calc(2.7% * 5) calc(2.7% * 6),
+    red calc(2.7% * 6) calc(2.7% * 7),
+    black calc(2.7% * 7) calc(2.7% * 8),
+    red calc(2.7% * 8) calc(2.7% * 9),
+    green calc(2.7% * 9) calc(2.7% * 10),
+    black calc(2.7% * 10) calc(2.7% * 11),
+    red calc(2.7% * 11) calc(2.7% * 12),
+    black calc(2.7% * 12) calc(2.7% * 13),
+    red calc(2.7% * 13) calc(2.7% * 14),
+    black calc(2.7% * 14) calc(2.7% * 15),
+    red calc(2.7% * 15) calc(2.7% * 16),
+    black calc(2.7% * 16) calc(2.7% * 17),
+    red calc(2.7% * 17) calc(2.7% * 18),
+    black calc(2.7% * 18) calc(2.7% * 19),
+    red calc(2.7% * 19) calc(2.7% * 20),
+    black calc(2.7% * 20) calc(2.7% * 21),
+    red calc(2.7% * 21) calc(2.7% * 22),
+    black calc(2.7% * 22) calc(2.7% * 23),
+    red calc(2.7% * 23) calc(2.7% * 24),
+    black calc(2.7% * 24) calc(2.7% * 25),
+    red calc(2.7% * 25) calc(2.7% * 26),
+    black calc(2.7% * 26) calc(2.7% * 27),
+    red calc(2.7% * 27) calc(2.7% * 28),
+    black calc(2.7% * 28) calc(2.7% * 29),
+    red calc(2.7% * 29) calc(2.7% * 30),
+    black calc(2.7% * 30) calc(2.7% * 31),
+    red calc(2.7% * 31) calc(2.7% * 32),
+    black calc(2.7% * 32) calc(2.7% * 33),
+    red calc(2.7% * 33) calc(2.7% * 34),
+    black calc(2.7% * 34) calc(2.7% * 35),
+    red calc(2.7% * 35) calc(2.7% * 36),
+    black calc(2.7% * 36) calc(2.7% * 37),
+    red calc(2.7% * 37)
+  );
+}
+
+.wheel-numbers {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotateWheel {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wheel-number {
+  position: absolute;
+  width: 200px;
+  height: 2.7%;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform-origin: left top;
+  user-select: none;
+  color: white;
+  padding-right: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  /* background: black; */
+}
+
+.wheel-number:first-of-type {
+  /* background: green; */
+}
+
+.wheel-number:nth-child(even) {
+  /* background: red; */
+}
+
+/* fix percentages to exact numbers */
+#startGameBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  /* display: none; */
+}
+
 .table-container {
   font-family: "Roboto", sans-serif;
+  /* flex: 1; */
 }
 
 .table {
@@ -25,6 +142,7 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
+
 .number {
   position: relative;
   font-weight: bolder;
@@ -261,6 +379,7 @@
 }
 
 .winning-number-div {
+  display: block;
   color: #fff;
   width: 30px;
   height: 30px;

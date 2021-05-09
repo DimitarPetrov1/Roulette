@@ -2,6 +2,26 @@ const numbers = document.querySelectorAll(".number");
 const buttons = document.querySelectorAll(".btn");
 let displayWinningNumber = document.getElementById("winningNumber");
 
+// const addNumbersWheel = () => {
+//   const target = document.querySelector(".wheel-numbers");
+//   for (let i = 0; i < 37; i++) {
+//     const element = document.createElement("div");
+//     element.classList.add("wheel-number");
+//     target.appendChild(element);
+//     element.textContent = i;
+//   }
+// };
+
+// 100 / 37 = 2.70
+// 360 / 37 = 9.72
+
+const arrangeNumbersWheel = () => {
+  const numbers = document.querySelectorAll(".wheel-number");
+  for (let i = 0; i < numbers.length; i++) {
+    numbers[i].style.transform = `rotate(-${(i * 360) / 37}deg)`;
+  }
+};
+
 const selectSingleNumber = (e) => {
   // click functions to add selected class
   // get the target number + the target element
@@ -104,23 +124,25 @@ const numberBg = (number) => {
   }
 };
 
-const startGame = () => {
-  setInterval(() => {
-    let winningNumber = Math.floor(Math.random() * 37);
-    // If we have selected a number ...
-    for (let i = 0; i < numbers.length; i++) {
-      if (
-        numbers[winningNumber].classList.contains("number-selected") ||
-        numbers[winningNumber].classList.contains("number-single-selected")
-      ) {
-        console.log("You win from " + winningNumber);
-      } else {
-        console.log("Winning number is: " + winningNumber);
-      }
+const startPlaying = () => {
+  let winningNumber = Math.floor(Math.random() * 37);
+  // If we have selected a number ...
+  for (let i = 0; i < numbers.length; i++) {
+    if (
+      numbers[winningNumber].classList.contains("number-selected") ||
+      numbers[winningNumber].classList.contains("number-single-selected")
+    ) {
+      console.log("You win from " + winningNumber);
+    } else {
+      console.log("Winning number is: " + winningNumber);
     }
-    // ... else don't do anything
-    numberBg(winningNumber);
-  }, 1000);
+  }
+  // ... else don't do anything
+  numberBg(winningNumber);
+};
+
+const startGame = () => {
+  setInterval(startPlaying, 1000);
 };
 
 // Optimise later
@@ -218,6 +240,9 @@ const hoverOut = (e) => {
     });
   }
 };
+
+// addNumbersWheel();
+arrangeNumbersWheel();
 
 document.getElementById("startGameBtn").addEventListener("click", startGame);
 numbers.forEach((number) => {
